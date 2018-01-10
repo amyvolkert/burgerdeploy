@@ -1,0 +1,58 @@
+<!-- Passing data into index.handlebars -->
+<!-- Loop through the data -->
+<div class="container">
+  <!-- Row one of two -->
+  <div class="row">
+    <!-- Row one, column one -->
+    <div class="col-md-12" id="heading">
+    <h1>The Gourmet Burger</h1>
+    </div>
+      <div class="col-md-6" class="task">
+        <div class="row">
+          {{#each data}}
+            {{#unless this.devoured}}
+          <!-- Column one. Posting id and burger name -->
+          <div class="col-md-6">
+            <pre>{{this.id}}.{{this.burger_name}}</pre>
+          </div>
+        <!-- Create a button that will send the this.id back to the server, unless devoured is 1 -->
+        <div class="col-12-3">
+          <form method="POST" action="/burgers/update?_method=PUT" class="button-size">
+            <!-- Hiding the id from the user -->
+            <input type="hidden" name="burger_id" type="text" value={{this.id}}>
+            <br>
+            <!-- Send the this.id to the server -->
+            <button type="submit" class="btn btn-default">DEVOUR IT!</button>
+          </form>
+        </div>
+        {{/unless}}
+        {{/each}}
+        </div>
+      </div>
+
+      <!-- Move burger id and name  -->
+      <div class="col-md-6" class="task">
+        {{#each data}}
+          <!-- If devoured is true -->
+          {{#if this.devoured}}
+            <input class="form-control" type="text" placeholder="{{this.id}}. {{this.burger_name}}" readonly>
+          {{/if}}
+        {{/each}}
+      </div>
+    </div>
+<!-- Container ends -->
+</div>
+
+<!-- Form to enter burger -->
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 enter-section">
+      <form action="/burgers/create" method="POST">
+        <input type="text" name="burger_name" class="form-control" value="" id="enter_text">
+        <button type="submit" class="btn btn-primary" id="text-enter-button">SUBMIT</button>
+      </form>
+      <p>What burger would you like to devour? Enter it here!</p>
+    </div>
+  </div>
+<!-- Container ends -->
+</div>
