@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "Eat-Da-Burger application",
   "engines": {
-   "node": "8.6.0"
+   "node": "8.6.0",
+   "npm": "5.3.0"
  },
   "dependencies": {
     "body-parser": "^1.17.2",
